@@ -6,14 +6,21 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 )
 
-// Glob returns all paths in a directory matching an extension.
+// Glob returns all paths in a directory matching an extension in sorted order.
 func Glob(dire, extn string) []string {
 	glob := filepath.Join(dire, "*"+extn)
 	paths, _ := filepath.Glob(glob)
+	sort.Strings(paths)
 	return paths
+}
+
+// Join returns a path from a directory, base name and extension.
+func Join(dire, name, extn string) string {
+	return filepath.Join(dire, name+extn)
 }
 
 // Match returns true if a file's base name contains a substring.

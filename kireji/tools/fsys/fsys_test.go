@@ -21,13 +21,19 @@ func TestGlob(t *testing.T) {
 	}, paths)
 }
 
+func TestJoin(t *testing.T) {
+	// success
+	path := Join("/dire", "alpha", ".txt")
+	assert.Equal(t, "/dire/alpha.txt", path)
+}
+
 func TestMatch(t *testing.T) {
 	// success - true
-	ok := Match("/dire/alpha.ext", "alph")
+	ok := Match("/dire/alpha.txt", "alph")
 	assert.True(t, ok)
 
 	// success - false
-	ok = Match("/dire/alpha.ext", "nope")
+	ok = Match("/dire/alpha.txt", "nope")
 	assert.False(t, ok)
 }
 
