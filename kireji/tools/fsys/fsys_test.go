@@ -9,6 +9,19 @@ import (
 	"github.com/wirehaiku/kireji/kireji/tools/test"
 )
 
+func TestExists(t *testing.T) {
+	// setup
+	path := test.File(t)
+
+	// success - true
+	ok := Exists(path)
+	assert.True(t, ok)
+
+	// success - false
+	ok = Exists("/nope")
+	assert.False(t, ok)
+}
+
 func TestGlob(t *testing.T) {
 	// setup
 	dire := test.Dire(t)

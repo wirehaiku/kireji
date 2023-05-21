@@ -2,6 +2,7 @@
 package fsys
 
 import (
+	"errors"
 	"fmt"
 	"io/fs"
 	"os"
@@ -9,6 +10,12 @@ import (
 	"sort"
 	"strings"
 )
+
+// Exists returns true if a file or directory path exists.
+func Exists(path string) bool {
+	_, err := os.Stat(path)
+	return !errors.Is(err, os.ErrNotExist)
+}
 
 // Glob returns all paths in a directory matching an extension in sorted order.
 func Glob(dire, extn string) []string {
