@@ -23,3 +23,9 @@ func TestName(t *testing.T) {
 	name := Name("\tFOO BAR\n")
 	assert.Equal(t, "foo-bar", name)
 }
+
+func TestPath(t *testing.T) {
+	// success
+	path := Path("\t/././file.ext\n")
+	assert.Equal(t, "/file.ext", path)
+}

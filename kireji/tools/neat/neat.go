@@ -1,7 +1,10 @@
 // Package neat implements value sanitisation functions.
 package neat
 
-import "strings"
+import (
+	"path/filepath"
+	"strings"
+)
 
 // Body returns a sanitised file body string.
 func Body(body string) string {
@@ -21,4 +24,10 @@ func Name(name string) string {
 	name = strings.TrimSpace(name)
 	name = strings.ToLower(name)
 	return strings.ReplaceAll(name, " ", "-")
+}
+
+// Path returns a sanitised file path string.
+func Path(path string) string {
+	path = strings.TrimSpace(path)
+	return filepath.Clean(path)
 }
