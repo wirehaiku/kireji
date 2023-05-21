@@ -19,6 +19,11 @@ func New(path string, mode fs.FileMode) *Note {
 	return &Note{neat.Path(path), mode}
 }
 
+// Exists returns true if the Note's file exists.
+func (n *Note) Exists() bool {
+	return fsys.Exists(n.Path)
+}
+
 // Match returns true if the Note's name contains a substring.
 func (n *Note) Match(sub string) bool {
 	return fsys.Match(n.Path, sub)

@@ -21,6 +21,15 @@ func TestNew(t *testing.T) {
 	assert.Equal(t, fs.FileMode(0666), note.Mode)
 }
 
+func TestExists(t *testing.T) {
+	// setup
+	note := testNote(t)
+
+	// success
+	ok := note.Exists()
+	assert.True(t, ok)
+}
+
 func TestMatch(t *testing.T) {
 	// setup
 	note := testNote(t)
