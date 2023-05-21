@@ -11,7 +11,9 @@ import (
 type Command func(*book.Book, []string) error
 
 // Commands is a map of all existing commands.
-var Commands = map[string]Command{}
+var Commands = map[string]Command{
+	"show": ShowCommand,
+}
 
 // Get returns a Command by name, or an error.
 func Get(name string) (Command, error) {
