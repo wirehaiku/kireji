@@ -21,10 +21,20 @@ func TestGlob(t *testing.T) {
 	}, paths)
 }
 
+func TestMatch(t *testing.T) {
+	// success - true
+	ok := Match("/dire/alpha.ext", "alph")
+	assert.True(t, ok)
+
+	// success - false
+	ok = Match("/dire/alpha.ext", "nope")
+	assert.False(t, ok)
+}
+
 func TestName(t *testing.T) {
 	// success
-	name := Name("/dire/name.ext")
-	assert.Equal(t, "name", name)
+	name := Name("/dire/alpha.txt")
+	assert.Equal(t, "alpha", name)
 }
 
 func TestRead(t *testing.T) {
@@ -58,6 +68,21 @@ func TestRename(t *testing.T) {
 	assert.Equal(t, filepath.Dir(path)+"/test.txt", dest)
 	assert.NoFileExists(t, filepath.Dir(path)+"/alpha.txt")
 	assert.FileExists(t, dest)
+	assert.NoError(t, err)
+}
+
+func TestSearch(t *testing.T) {
+	// setup
+	path := test.File(t)
+
+	// success - true
+	ok, err := Search(path, "alph")
+	assert.True(t, ok)
+	assert.NoError(t, err)
+
+	// success - false
+	ok, err = Search(path, "nope")
+	assert.False(t, ok)
 	assert.NoError(t, err)
 }
 

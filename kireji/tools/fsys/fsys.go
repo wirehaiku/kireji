@@ -16,6 +16,12 @@ func Glob(dire, extn string) []string {
 	return paths
 }
 
+// Match returns true if a file's base name contains a substring.
+func Match(path, sub string) bool {
+	name := strings.ToLower(Name(path))
+	return strings.Contains(name, strings.ToLower(sub))
+}
+
 // Name returns a file's base name without the extension.
 func Name(path string) string {
 	base := filepath.Base(path)
@@ -54,6 +60,17 @@ func Rename(path, name string) (string, error) {
 	}
 
 	return dest, nil
+}
+
+// Search returns true if a file's contents contain a substring.
+func Search(path, sub string) (bool, error) {
+	body, err := Read(path)
+	if err != nil {
+		return false, err
+	}
+
+	body = strings.ToLower(body)
+	return strings.Contains(body, strings.ToLower(sub)), nil
 }
 
 // Write writes the contents of a file from a string.
