@@ -19,6 +19,16 @@ func New(path string, mode fs.FileMode) *Note {
 	return &Note{neat.Path(path), mode}
 }
 
+// Match returns true if the Note's name contains a substring.
+func (n *Note) Match(sub string) bool {
+	return fsys.Match(n.Path, sub)
+}
+
+// Name returns the Note's base name.
+func (n *Note) Name() string {
+	return neat.Name(fsys.Name(n.Path))
+}
+
 // Read returns the Note's contents as a string.
 func (n *Note) Read() (string, error) {
 	body, err := fsys.Read(n.Path)
@@ -36,9 +46,9 @@ func (n *Note) Rename(name string) error {
 	return nil
 }
 
-// Name returns the Note's base name.
-func (n *Note) Name() string {
-	return neat.Name(fsys.Name(n.Path))
+// Search returns true if the Note's contents contain a substring.
+func (n *Note) Search(sub string) (bool, error) {
+	return fsys.Search(n.Path, sub)
 }
 
 // Trash renames the Note's file to the ".trash" extension.

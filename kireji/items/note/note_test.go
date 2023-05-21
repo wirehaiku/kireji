@@ -21,6 +21,24 @@ func TestNew(t *testing.T) {
 	assert.Equal(t, fs.FileMode(0666), note.Mode)
 }
 
+func TestMatch(t *testing.T) {
+	// setup
+	note := testNote(t)
+
+	// success
+	ok := note.Match("alph")
+	assert.True(t, ok)
+}
+
+func TestName(t *testing.T) {
+	// setup
+	note := testNote(t)
+
+	// success
+	name := note.Name()
+	assert.Equal(t, "alpha", name)
+}
+
 func TestRead(t *testing.T) {
 	// setup
 	note := testNote(t)
@@ -44,15 +62,6 @@ func TestRename(t *testing.T) {
 	assert.NoError(t, err)
 }
 
-func TestName(t *testing.T) {
-	// setup
-	note := testNote(t)
-
-	// success
-	name := note.Name()
-	assert.Equal(t, "alpha", name)
-}
-
 func TestTrash(t *testing.T) {
 	// setup
 	note := testNote(t)
@@ -63,6 +72,16 @@ func TestTrash(t *testing.T) {
 	assert.Contains(t, note.Path, "alpha.trash")
 	assert.NoFileExists(t, orig)
 	assert.FileExists(t, note.Path)
+	assert.NoError(t, err)
+}
+
+func TestSearch(t *testing.T) {
+	// setup
+	note := testNote(t)
+
+	// success
+	ok, err := note.Search("alph")
+	assert.True(t, ok)
 	assert.NoError(t, err)
 }
 
