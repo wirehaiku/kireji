@@ -6,7 +6,17 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/wirehaiku/kireji/kireji/tools/stio"
 )
+
+func TestBufs(t *testing.T) {
+	// success
+	out := Bufs("test\n")
+	line := stio.Read()
+	stio.Write("test\n")
+	assert.Equal(t, "test\n", line)
+	assert.Equal(t, "test\n", out.String())
+}
 
 func TestDire(t *testing.T) {
 	// success
