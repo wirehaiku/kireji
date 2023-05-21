@@ -14,8 +14,8 @@ func TestBody(t *testing.T) {
 
 func TestExtn(t *testing.T) {
 	// success
-	extn := Extn("\t.EXT\n")
-	assert.Equal(t, ".ext", extn)
+	extn := Extn("\t.TXT\n")
+	assert.Equal(t, ".txt", extn)
 }
 
 func TestName(t *testing.T) {
