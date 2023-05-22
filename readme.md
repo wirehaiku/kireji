@@ -41,16 +41,16 @@ For example, the file `~/notes/foo.txt` is represented as `foo` and asking Kirej
 
 ### `show NOTE`
 
-Print a note's contents, if it exists:
+Print a note's contents, if it exists. 
 
-<summary> <details> Example: </details> 
+<details> <summary>Example:</summary>
 
 ```
 $ kireji show groceries
 Need to buy: bread, milk, tomato soup, party streamers...
 ```
 
-</summary>
+</details> 
 
 ## Contributing
 
