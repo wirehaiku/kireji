@@ -17,8 +17,8 @@ var Stdout = bufio.NewWriter(os.Stdout)
 // Exec executes an external command with arguments.
 func Exec(name string, args ...string) error {
 	comm := exec.Command(name, args...)
-	comm.Stdin = Stdin
-	comm.Stdout = Stdout
+	comm.Stdin = os.Stdin
+	comm.Stdout = os.Stdout
 	if err := comm.Run(); err != nil {
 		return fmt.Errorf("failed to run %q: %w", name, err)
 	}

@@ -3,6 +3,8 @@ package stio
 import (
 	"bufio"
 	"bytes"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -10,12 +12,15 @@ import (
 
 func TestExec(t *testing.T) {
 	// setup
-	buf := bytes.NewBuffer(nil)
-	Stdout = bufio.NewWriter(buf)
+	dire := t.TempDir()
+	file, _ := os.Create(filepath.Join(dire, "stdout.txt"))
+	os.Stdout = file
+	defer file.Close()
 
 	// success
 	err := Exec("echo", "test")
-	assert.Equal(t, "test\n", buf.String())
+	bits, _ := os.ReadFile(file.Name())
+	assert.Equal(t, "test\n", string(bits))
 	assert.NoError(t, err)
 }
 
