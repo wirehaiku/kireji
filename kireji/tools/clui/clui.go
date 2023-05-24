@@ -31,5 +31,9 @@ func Env(env string, fun func(string) string) (string, error) {
 		return "", fmt.Errorf("environment variable %q not set", env)
 	}
 
-	return fun(val), nil
+	if fun != nil {
+		return fun(val), nil
+	}
+
+	return val, nil
 }

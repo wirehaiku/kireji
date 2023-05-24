@@ -35,9 +35,15 @@ func TestEnv(t *testing.T) {
 	os.Setenv("EMPTY", "")
 	os.Setenv("TEST", "test")
 
-	// success
+	// success - with function
 	val, err := Env("TEST", strings.ToUpper)
 	assert.Equal(t, "TEST", val)
+	assert.NoError(t, err)
+
+	// success - nil function
+	val, err = Env("TEST", nil)
+	assert.Equal(t, "test", val)
+	assert.NoError(t, err)
 
 	// failure - missing env
 	val, err = Env("NOPE", strings.ToUpper)
