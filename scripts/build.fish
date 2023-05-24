@@ -1,4 +1,4 @@
-#! /usr/bin/env fish
+#!/usr/bin/env fish
 # scripts/build.fish: Build cross-platform binaries using Gox.
 
 set arch   "386 amd64"
