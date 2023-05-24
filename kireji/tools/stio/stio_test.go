@@ -8,6 +8,17 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestExec(t *testing.T) {
+	// setup
+	buf := bytes.NewBuffer(nil)
+	Stdout = bufio.NewWriter(buf)
+
+	// success
+	err := Exec("echo", "test")
+	assert.Equal(t, "test\n", buf.String())
+	assert.NoError(t, err)
+}
+
 func TestRead(t *testing.T) {
 	// setup
 	buf := bytes.NewBufferString("test\n")
