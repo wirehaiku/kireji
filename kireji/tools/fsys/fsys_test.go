@@ -29,8 +29,8 @@ func TestGlob(t *testing.T) {
 	// success
 	paths := Glob(dire, ".txt")
 	assert.Equal(t, []string{
-		dire + "/alpha.txt",
-		dire + "/bravo.txt",
+		filepath.Join(dire, "alpha.txt"),
+		filepath.Join(dire, "bravo.txt"),
 	}, paths)
 }
 
@@ -72,8 +72,8 @@ func TestReext(t *testing.T) {
 
 	// success
 	dest, err := Reext(path, ".test")
-	assert.Equal(t, filepath.Dir(path)+"/alpha.test", dest)
-	assert.NoFileExists(t, filepath.Dir(path)+"/alpha.txt")
+	assert.Equal(t, filepath.Join(filepath.Dir(path), "alpha.test"), dest)
+	assert.NoFileExists(t, filepath.Join(filepath.Dir(path), "alpha.txt"))
 	assert.FileExists(t, dest)
 	assert.NoError(t, err)
 }
@@ -84,8 +84,8 @@ func TestRename(t *testing.T) {
 
 	// success
 	dest, err := Rename(path, "test")
-	assert.Equal(t, filepath.Dir(path)+"/test.txt", dest)
-	assert.NoFileExists(t, filepath.Dir(path)+"/alpha.txt")
+	assert.Equal(t, filepath.Join(filepath.Dir(path), "/test.txt"), dest)
+	assert.NoFileExists(t, filepath.Join(filepath.Dir(path), "alpha.txt"))
 	assert.FileExists(t, dest)
 	assert.NoError(t, err)
 }

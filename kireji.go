@@ -30,13 +30,13 @@ func main() {
 		die("no arguments provided")
 	}
 
+	comm, err := comms.Get(os.Args[1])
+	try(err)
+
 	dire, err := clui.Env("KIREJI_DIR", neat.Path)
 	try(err)
 
 	extn, err := clui.Env("KIREJI_EXT", neat.Extn)
-	try(err)
-
-	comm, err := comms.Get(os.Args[1])
 	try(err)
 
 	book := book.New(dire, extn, 0666)

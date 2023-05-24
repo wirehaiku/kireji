@@ -40,13 +40,12 @@ func (b *Book) Create(name, body string) (*note.Note, error) {
 // Get returns an existing Note by name.
 func (b *Book) Get(name string) (*note.Note, error) {
 	dest := fsys.Join(b.Dire, neat.Name(name), b.Extn)
-	for _, path := range fsys.Glob(b.Dire, b.Extn) {
-		if path == dest {
-			return note.New(path, b.Mode), nil
-		}
+	note := note.New(dest, b.Mode)
+	if !note.Exists() {
+		return nil, fmt.Errorf("note %q does not exist", name)
 	}
 
-	return nil, fmt.Errorf("note %q does not exist", name)
+	return note, nil
 }
 
 // Filter returns all Notes passing a filter function.
