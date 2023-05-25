@@ -13,6 +13,8 @@ type Command func(*book.Book, []string) error
 // Commands is a map of all existing commands.
 var Commands = map[string]Command{
 	"edit": EditCommand,
+	"junk": JunkCommand,
+	"list": ListCommand,
 	"show": ShowCommand,
 }
 

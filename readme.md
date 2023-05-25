@@ -65,6 +65,24 @@ old-notes.junk
 
 </details>
 
+### `list [SUBSTRING]`
+
+List all existing notes in your directory, or notes with names containing a substring.
+
+<details> <summary>Example:</summary>
+
+```
+$ kireji list
+2023-goals
+groceries
+party-planner
+
+$ kireji list 2023
+2023-goals
+```
+
+</details>
+
 ### `show NOTE`
 
 Print an existing note's contents.
