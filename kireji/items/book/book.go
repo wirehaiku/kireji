@@ -22,15 +22,15 @@ func New(dire, extn string, mode fs.FileMode) *Book {
 	return &Book{neat.Path(dire), neat.Extn(extn), mode}
 }
 
-// Create creates and returns a new Note.
-func (b *Book) Create(name, body string) (*note.Note, error) {
+// Create creates and returns a new empty Note.
+func (b *Book) Create(name string) (*note.Note, error) {
 	path := fsys.Join(b.Dire, neat.Name(name), b.Extn)
 	note := note.New(path, b.Mode)
 	if note.Exists() {
 		return nil, fmt.Errorf("note %q already exists", name)
 	}
 
-	if err := note.Write(body); err != nil {
+	if err := note.Write(""); err != nil {
 		return nil, err
 	}
 
@@ -46,6 +46,17 @@ func (b *Book) Get(name string) (*note.Note, error) {
 	}
 
 	return note, nil
+}
+
+// GetOrCreate returns an existing or a newly created Note.
+func (b *Book) GetOrCreate(name string) (*note.Note, error) {
+	dest := fsys.Join(b.Dire, neat.Name(name), b.Extn)
+	note := note.New(dest, b.Mode)
+	if note.Exists() {
+		return note, nil
+	}
+
+	return b.Create(name)
 }
 
 // Filter returns all Notes passing a filter function.
