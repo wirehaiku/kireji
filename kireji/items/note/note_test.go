@@ -30,6 +30,19 @@ func TestExists(t *testing.T) {
 	assert.True(t, ok)
 }
 
+func TestJunk(t *testing.T) {
+	// setup
+	note := testNote(t)
+	orig := note.Path
+
+	// success
+	err := note.Junk()
+	assert.Contains(t, note.Path, "alpha.junk")
+	assert.NoFileExists(t, orig)
+	assert.FileExists(t, note.Path)
+	assert.NoError(t, err)
+}
+
 func TestMatch(t *testing.T) {
 	// setup
 	note := testNote(t)
@@ -66,19 +79,6 @@ func TestRename(t *testing.T) {
 	// success
 	err := note.Rename("test")
 	assert.Contains(t, note.Path, "test.txt")
-	assert.NoFileExists(t, orig)
-	assert.FileExists(t, note.Path)
-	assert.NoError(t, err)
-}
-
-func TestJunk(t *testing.T) {
-	// setup
-	note := testNote(t)
-	orig := note.Path
-
-	// success
-	err := note.Junk()
-	assert.Contains(t, note.Path, "alpha.junk")
 	assert.NoFileExists(t, orig)
 	assert.FileExists(t, note.Path)
 	assert.NoError(t, err)

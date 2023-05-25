@@ -3,11 +3,10 @@ package comms
 import (
 	"github.com/wirehaiku/kireji/kireji/items/book"
 	"github.com/wirehaiku/kireji/kireji/tools/clui"
-	"github.com/wirehaiku/kireji/kireji/tools/stio"
 )
 
-// ShowCommand prints the contents of an existing Note.
-func ShowCommand(book *book.Book, args []string) error {
+// JunkCommand junks an existing Note.
+func JunkCommand(book *book.Book, args []string) error {
 	name, err := clui.ArgErr(args, 0)
 	if err != nil {
 		return err
@@ -18,11 +17,9 @@ func ShowCommand(book *book.Book, args []string) error {
 		return err
 	}
 
-	body, err := note.Read()
-	if err != nil {
+	if err := note.Junk(); err != nil {
 		return err
 	}
 
-	stio.Write(body)
 	return nil
 }

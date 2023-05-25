@@ -6,7 +6,7 @@ import (
 	"github.com/wirehaiku/kireji/kireji/tools/stio"
 )
 
-// EditCommand opens an existing note in the default editor.
+// EditCommand opens an existing Note in the default editor.
 func EditCommand(book *book.Book, args []string) error {
 	name, err := clui.ArgErr(args, 0)
 	if err != nil {

@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 ### Added
-- New command: `edit`.
+- New commands: `edit`, `junk`.
 
 ## [0.1.0] - 2023-05-21
 ### Added

@@ -45,8 +45,22 @@ Open an existing note in the default editor, according to the environment variab
 
 <details> <summary>Example:</summary>
 
-```bash
+```
 $ kireji edit party-planner
+```
+
+</details>
+
+### `junk NOTE`
+
+"Delete" an existing note by changing its file extension to `.junk`.
+
+<details> <summary>Example:</summary>
+
+```
+$ kireji junk old-notes
+$ ls ~/notes
+old-notes.junk
 ```
 
 </details>
