@@ -39,9 +39,21 @@ That's it! That's all the configuration you need.
 Kireji represents note files as lowercase base names.
 For example, the file `~/notes/foo.txt` is represented as `foo` and asking Kireji to make the note `FOO BAR` results in `~/notes/foo-bar.txt` being created.
 
+### `edit NOTE`
+
+Open an existing note in the default editor, according to the environment variable `EDITOR`.
+
+<details> <summary>Example:</summary>
+
+```bash
+$ kireji edit party-planner
+```
+
+</details>
+
 ### `show NOTE`
 
-Print a note's contents, if it exists. 
+Print an existing note's contents.
 
 <details> <summary>Example:</summary>
 
