@@ -13,7 +13,7 @@ func EditCommand(book *book.Book, args []string) error {
 		return err
 	}
 
-	note, err := book.Get(name)
+	note, err := book.GetOrCreate(name)
 	if err != nil {
 		return err
 	}
