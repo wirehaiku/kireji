@@ -12,9 +12,9 @@ import (
 )
 
 var TestFiles = map[string]string{
-	"alpha.txt":     "Alpha note.\n",
-	"bravo.txt":     "Bravo note.\n",
-	"charlie.trash": "Charlie note (trashed).\n",
+	"alpha.txt":    "Alpha note.\n",
+	"bravo.txt":    "Bravo note.\n",
+	"charlie.junk": "Charlie note (junked).\n",
 }
 
 // Bufs sets Stdin and Stdout to temporary buffers, populated Stdin with a string and

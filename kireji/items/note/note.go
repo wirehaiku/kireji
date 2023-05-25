@@ -24,6 +24,17 @@ func (n *Note) Exists() bool {
 	return fsys.Exists(n.Path)
 }
 
+// Junk renames the Note's file to the ".junk" extension.
+func (n *Note) Junk() error {
+	dest, err := fsys.Reext(n.Path, ".junk")
+	if err != nil {
+		return err
+	}
+
+	n.Path = dest
+	return nil
+}
+
 // Match returns true if the Note's name contains a substring.
 func (n *Note) Match(sub string) bool {
 	return fsys.Match(n.Path, sub)
@@ -54,17 +65,6 @@ func (n *Note) Rename(name string) error {
 // Search returns true if the Note's contents contain a substring.
 func (n *Note) Search(sub string) (bool, error) {
 	return fsys.Search(n.Path, sub)
-}
-
-// Trash renames the Note's file to the ".trash" extension.
-func (n *Note) Trash() error {
-	dest, err := fsys.Reext(n.Path, ".trash")
-	if err != nil {
-		return err
-	}
-
-	n.Path = dest
-	return nil
 }
 
 // Write writes the Note's contents from a string.

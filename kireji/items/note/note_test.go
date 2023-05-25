@@ -71,14 +71,14 @@ func TestRename(t *testing.T) {
 	assert.NoError(t, err)
 }
 
-func TestTrash(t *testing.T) {
+func TestJunk(t *testing.T) {
 	// setup
 	note := testNote(t)
 	orig := note.Path
 
 	// success
-	err := note.Trash()
-	assert.Contains(t, note.Path, "alpha.trash")
+	err := note.Junk()
+	assert.Contains(t, note.Path, "alpha.junk")
 	assert.NoFileExists(t, orig)
 	assert.FileExists(t, note.Path)
 	assert.NoError(t, err)
