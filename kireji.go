@@ -26,19 +26,17 @@ func try(err error) {
 
 // main runs the main Kireji program.
 func main() {
-	if len(os.Args) < 2 {
-		die("no arguments provided")
-	}
-
-	comm, err := comms.Get(os.Args[1])
-	try(err)
-
 	dire, err := clui.Env("KIREJI_DIR", neat.Path)
 	try(err)
 
 	extn, err := clui.Env("KIREJI_EXT", neat.Extn)
 	try(err)
 
+	name := clui.Arg(os.Args, 1, "help")
+	args := clui.ArgSlice(os.Args, 2)
 	book := book.New(dire, extn, 0666)
-	try(comm(book, os.Args[2:]))
+
+	comm, err := comms.Get(name)
+	try(err)
+	try(comm(book, args))
 }
