@@ -24,6 +24,15 @@ func ArgErr(args []string, idx int) (string, error) {
 	return "", fmt.Errorf("not enough arguments")
 }
 
+// ArgSlice returns a partial arguments slice from an argument slice.
+func ArgSlice(args []string, from int) []string {
+	if len(args) > from {
+		return args[from:]
+	}
+
+	return nil
+}
+
 // Env returns an existing environment variable through a function, or an error.
 func Env(env string, fun func(string) string) (string, error) {
 	val, ok := os.LookupEnv(env)

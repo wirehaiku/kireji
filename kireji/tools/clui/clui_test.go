@@ -30,6 +30,16 @@ func TestArgErr(t *testing.T) {
 	assert.EqualError(t, err, "not enough arguments")
 }
 
+func TestArgSlice(t *testing.T) {
+	// success - partial slice
+	args := ArgSlice([]string{"one", "two"}, 1)
+	assert.Equal(t, []string{"two"}, args)
+
+	// success - empty slice
+	args = ArgSlice([]string{"one", "two"}, 2)
+	assert.Empty(t, args)
+}
+
 func TestEnv(t *testing.T) {
 	// setup
 	os.Setenv("EMPTY", "")
