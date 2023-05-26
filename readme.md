@@ -13,7 +13,7 @@ Just tell Kireji where your notes are and let it do the rest.
 You can install Kireji with `go get`...
 
 ```
-go get github.com/wirehaiku/kireji@latest
+go install github.com/wirehaiku/kireji@latest
 ```
 
 or download a binary from the [latest release][rels].
