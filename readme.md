@@ -98,6 +98,20 @@ $ kireji list 2023
 
 </details>
 
+### `make NOTE`
+
+Create a new empty note in your directory.
+
+<details> <summary>Example:</summary>
+
+```
+$ kireji make new-note
+$ ls ~/notes
+new-note.txt
+```
+
+</details>
+
 ### `show NOTE`
 
 Print an existing note's contents.

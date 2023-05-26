@@ -31,6 +31,11 @@ var HelpText = map[string][]string{
 		"list [SUBSTRING]",
 	},
 
+	"make": {
+		"Create a new empty note.",
+		"make NOTE",
+	},
+
 	"show": {
 		"Print the contents of a note.",
 		"show NOTE",
