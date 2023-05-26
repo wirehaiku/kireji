@@ -10,11 +10,11 @@ import (
 
 func TestFormatHelp(t *testing.T) {
 	// setup
-	HelpText["test"] = []string{"Test command.", "$ kireji test"}
+	HelpText["test"] = []string{"Test command.", "test"}
 
 	// success
 	help := FormatHelp("test")
-	assert.Equal(t, "test: Test command.\n  $ kireji test\n", help)
+	assert.Equal(t, "test:\n  Test command.\n  $ kireji test\n", help)
 }
 
 func TestHelpCommand(t *testing.T) {

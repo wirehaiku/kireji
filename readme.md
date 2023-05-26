@@ -53,13 +53,14 @@ $ kireji edit party-planner
 
 ### `help [COMMAND]`
 
-Print a help message for one or all commands.
+Print a help message for all commands or a specified command.
 
 <details> <summary>Example:</summary>
 
 ```
 $ kireji help edit
-edit: Edit a new or existing note.
+edit:
+  Edit a new or existing note.
   $ kireji edit NOTE
 ```
 

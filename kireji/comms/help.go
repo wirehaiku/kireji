@@ -13,35 +13,36 @@ import (
 var HelpText = map[string][]string{
 	"edit": {
 		"Edit a new or existing note.",
-		"$ kireji edit NOTE",
+		"edit NOTE",
 	},
 
 	"help": {
 		"Show help for one or all Kireji commands.",
-		"$ kireji help [COMMAND]",
+		"help [COMMAND]",
 	},
 
 	"junk": {
 		"Junk an existing note.",
-		"$ kireji junk NOTE",
+		"junk NOTE",
 	},
 
 	"list": {
 		"List all notes, or notes matching SUBSTRING.",
-		"$ kireji list [SUBSTRING]",
+		"list [SUBSTRING]",
 	},
 
 	"show": {
 		"Print the contents of a note.",
-		"$ kireji show NOTE",
+		"show NOTE",
 	},
 }
 
 // FormatHelp formats a Command's help message.
 func FormatHelp(comm string) string {
 	return strings.Join([]string{
-		fmt.Sprintf("%s: %s", comm, HelpText[comm][0]),
-		fmt.Sprintf("  %s", HelpText[comm][1]),
+		fmt.Sprintf("%s:", comm),
+		fmt.Sprintf("  %s", HelpText[comm][0]),
+		fmt.Sprintf("  $ kireji %s", HelpText[comm][1]),
 	}, "\n") + "\n"
 }
 
