@@ -51,6 +51,20 @@ $ kireji edit party-planner
 
 </details>
 
+### `help [COMMAND]`
+
+Print a help message for one or all commands.
+
+<details> <summary>Example:</summary>
+
+```
+$ kireji help edit
+edit: Edit a new or existing note.
+  $ kireji edit NOTE
+```
+
+</details>
+
 ### `junk NOTE`
 
 "Delete" an existing note by changing its file extension to `.junk`.
