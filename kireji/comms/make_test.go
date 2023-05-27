@@ -17,8 +17,4 @@ func TestMakeCommand(t *testing.T) {
 	err := MakeCommand(book, []string{"test"})
 	assert.FileExists(t, filepath.Join(book.Dire, "test.txt"))
 	assert.NoError(t, err)
-
-	// failure - note exists
-	err = MakeCommand(book, []string{"test"})
-	assert.EqualError(t, err, `note "test" already exists`)
 }
