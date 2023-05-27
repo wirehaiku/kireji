@@ -16,7 +16,7 @@ You can install Kireji with `go get`...
 go install github.com/wirehaiku/kireji@latest
 ```
 
-or download a binary from the [latest release][rels].
+...or download a binary from the [latest release][rels].
 
 ## Configuration
 
