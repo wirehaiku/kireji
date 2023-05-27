@@ -51,6 +51,20 @@ $ kireji edit party-planner
 
 </details>
 
+### `find SUBSTRING`
+
+List all notes with contents containing a substring.
+
+<details> <summary>Example:</summary>
+
+```
+$ kireji find "tomato soup"
+groceries
+restaurant-ideas
+```
+
+</details>
+
 ### `help [COMMAND]`
 
 Print a help message for all commands or a specified command.

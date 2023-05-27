@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 ### Added
-- New commands: `edit`, `help`, `junk`, `list`, `make`.
+- New commands: `edit`, `find`, `help`, `junk`, `list`, `make`.
 
 ## [0.1.0] - 2023-05-21
 ### Added
