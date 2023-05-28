@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/wirehaiku/kireji/kireji/tools/errs"
 )
 
 func TestArg(t *testing.T) {
@@ -58,10 +59,10 @@ func TestEnv(t *testing.T) {
 	// failure - missing env
 	val, err = Env("NOPE", strings.ToUpper)
 	assert.Empty(t, val)
-	assert.EqualError(t, err, `environment variable "NOPE" not set`)
+	assert.Equal(t, errs.EnvMissing("NOPE"), err)
 
 	// failure - empty env
 	val, err = Env("EMPTY", strings.ToUpper)
 	assert.Empty(t, val)
-	assert.EqualError(t, err, `environment variable "EMPTY" not set`)
+	assert.Equal(t, errs.EnvMissing("EMPTY"), err)
 }

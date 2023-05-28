@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+
+	"github.com/wirehaiku/kireji/kireji/tools/errs"
 )
 
 // Stdin is the default user input Reader.
@@ -20,7 +22,7 @@ func Exec(name string, args ...string) error {
 	comm.Stdin = os.Stdin
 	comm.Stdout = os.Stdout
 	if err := comm.Run(); err != nil {
-		return fmt.Errorf("failed to run %q: %w", name, err)
+		return errs.ExecFail(name, err)
 	}
 
 	return nil

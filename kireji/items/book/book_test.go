@@ -7,6 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/wirehaiku/kireji/kireji/items/note"
+	"github.com/wirehaiku/kireji/kireji/tools/errs"
 	"github.com/wirehaiku/kireji/kireji/tools/test"
 )
 
@@ -36,7 +37,7 @@ func TestCreate(t *testing.T) {
 	// failure - existing Note
 	note, err = book.Create("alpha")
 	assert.Nil(t, note)
-	assert.EqualError(t, err, `note "alpha" already exists`)
+	assert.Equal(t, errs.NoteExists("alpha"), err)
 }
 
 func TestGet(t *testing.T) {
@@ -48,23 +49,23 @@ func TestGet(t *testing.T) {
 	assert.Equal(t, filepath.Join(book.Dire, "alpha.txt"), note.Path)
 	assert.NoError(t, err)
 
-	// failure - nonexistent note
+	// failure - nonexistent Note
 	note, err = book.Get("nope")
 	assert.Nil(t, note)
-	assert.EqualError(t, err, `note "nope" does not exist`)
+	assert.Equal(t, errs.NoteMissing("nope"), err)
 }
 
 func TestGetOrCreate(t *testing.T) {
 	// setup
 	book := testBook(t)
 
-	// success - new note
+	// success - new Note
 	note, err := book.GetOrCreate("test")
 	assert.Equal(t, filepath.Join(book.Dire, "test.txt"), note.Path)
 	assert.FileExists(t, note.Path)
 	assert.NoError(t, err)
 
-	// success - existing note
+	// success - existing Note
 	note, err = book.GetOrCreate("test")
 	assert.Equal(t, filepath.Join(book.Dire, "test.txt"), note.Path)
 	assert.FileExists(t, note.Path)
