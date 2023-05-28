@@ -3,12 +3,13 @@ package fsys
 
 import (
 	"errors"
-	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"github.com/wirehaiku/kireji/kireji/tools/errs"
 )
 
 // Exists returns true if a file or directory path exists.
@@ -46,7 +47,7 @@ func Name(path string) string {
 func Read(path string) (string, error) {
 	bits, err := os.ReadFile(path)
 	if err != nil {
-		return "", fmt.Errorf("cannot read file %q: %w", path, err)
+		return "", errs.ReadFail(path, err)
 	}
 
 	return string(bits), nil
@@ -58,7 +59,7 @@ func Reext(path, extn string) (string, error) {
 	name := Name(path)
 	dest := filepath.Join(dire, name+extn)
 	if err := os.Rename(path, dest); err != nil {
-		return "", fmt.Errorf("cannot rename file %q: %w", path, err)
+		return "", errs.MoveFail(path, err)
 	}
 
 	return dest, nil
@@ -70,7 +71,7 @@ func Rename(path, name string) (string, error) {
 	extn := filepath.Ext(path)
 	dest := filepath.Join(dire, name+extn)
 	if err := os.Rename(path, dest); err != nil {
-		return "", fmt.Errorf("cannot rename file %q: %w", path, err)
+		return "", errs.MoveFail(path, err)
 	}
 
 	return dest, nil
@@ -90,7 +91,7 @@ func Search(path, sub string) (bool, error) {
 // Write writes the contents of a file from a string.
 func Write(path, body string, mode fs.FileMode) error {
 	if err := os.WriteFile(path, []byte(body), mode); err != nil {
-		return fmt.Errorf("cannot write file %q: %w", path, err)
+		return errs.WriteFail(path, err)
 	}
 
 	return nil

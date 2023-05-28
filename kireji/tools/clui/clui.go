@@ -2,8 +2,9 @@
 package clui
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/wirehaiku/kireji/kireji/tools/errs"
 )
 
 // Arg returns an indexed element from an argument slice, or a default value.
@@ -21,7 +22,7 @@ func ArgErr(args []string, idx int) (string, error) {
 		return args[idx], nil
 	}
 
-	return "", fmt.Errorf("not enough arguments")
+	return "", errs.ArgsMissing()
 }
 
 // ArgSlice returns a partial arguments slice from an argument slice.
@@ -37,7 +38,7 @@ func ArgSlice(args []string, from int) []string {
 func Env(env string, fun func(string) string) (string, error) {
 	val, ok := os.LookupEnv(env)
 	if !ok || val == "" {
-		return "", fmt.Errorf("environment variable %q not set", env)
+		return "", errs.EnvMissing(env)
 	}
 
 	if fun != nil {

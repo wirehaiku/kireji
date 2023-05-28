@@ -2,10 +2,10 @@
 package book
 
 import (
-	"fmt"
 	"io/fs"
 
 	"github.com/wirehaiku/kireji/kireji/items/note"
+	"github.com/wirehaiku/kireji/kireji/tools/errs"
 	"github.com/wirehaiku/kireji/kireji/tools/fsys"
 	"github.com/wirehaiku/kireji/kireji/tools/neat"
 )
@@ -27,7 +27,7 @@ func (b *Book) Create(name string) (*note.Note, error) {
 	path := fsys.Join(b.Dire, neat.Name(name), b.Extn)
 	note := note.New(path, b.Mode)
 	if note.Exists() {
-		return nil, fmt.Errorf("note %q already exists", name)
+		return nil, errs.NoteExists(name)
 	}
 
 	if err := note.Write(""); err != nil {
@@ -42,7 +42,7 @@ func (b *Book) Get(name string) (*note.Note, error) {
 	dest := fsys.Join(b.Dire, neat.Name(name), b.Extn)
 	note := note.New(dest, b.Mode)
 	if !note.Exists() {
-		return nil, fmt.Errorf("note %q does not exist", name)
+		return nil, errs.NoteMissing(name)
 	}
 
 	return note, nil

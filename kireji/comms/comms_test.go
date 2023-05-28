@@ -5,6 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/wirehaiku/kireji/kireji/items/book"
+	"github.com/wirehaiku/kireji/kireji/tools/errs"
 )
 
 func TestGet(t *testing.T) {
@@ -19,5 +20,5 @@ func TestGet(t *testing.T) {
 	// failure - invalid command
 	comm, err = Get("nope")
 	assert.Nil(t, comm)
-	assert.EqualError(t, err, `"nope" is not a valid command`)
+	assert.Equal(t, errs.CommandMissing("nope"), err)
 }
