@@ -33,7 +33,7 @@ func TestExecFail(t *testing.T) {
 
 func TestMoveFail(t *testing.T) {
 	// success
-	err := ReadFail("test.txt", errors.New("error"))
+	err := MoveFail("/dire/test.txt", errors.New("error"))
 	assert.EqualError(t, err, "cannot move test.txt: error")
 }
 
@@ -51,12 +51,12 @@ func TestNoteMissing(t *testing.T) {
 
 func TestReadFail(t *testing.T) {
 	// success
-	err := ReadFail("test.txt", errors.New("error"))
+	err := ReadFail("/dire/test.txt", errors.New("error"))
 	assert.EqualError(t, err, "cannot read test.txt: error")
 }
 
 func TestWriteFail(t *testing.T) {
 	// success
-	err := WriteFail("test.txt", errors.New("error"))
+	err := WriteFail("/dire/test.txt", errors.New("error"))
 	assert.EqualError(t, err, "cannot write test.txt: error")
 }
