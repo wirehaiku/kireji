@@ -17,6 +17,7 @@ var Commands = map[string]Command{
 	"junk": JunkCommand,
 	"list": ListCommand,
 	"make": MakeCommand,
+	"move": MoveCommand,
 	"show": ShowCommand,
 }
 

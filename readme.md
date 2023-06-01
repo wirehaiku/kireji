@@ -126,6 +126,20 @@ new-note.txt
 
 </details>
 
+### `move NOTE NAME`
+
+Rename an existing note to a new name.
+
+<details> <summary>Example:</summary>
+
+```
+$ kireji move notes old-notes
+$ ls ~/notes
+old-notes.txt
+```
+
+</details>
+
 ### `show NOTE`
 
 Print an existing note's contents.

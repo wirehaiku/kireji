@@ -37,6 +37,11 @@ var HelpText = map[string][]string{
 		"make NOTE",
 	},
 
+	"move": {
+		"Move an existing note to a new name.",
+		"move NOTE NAME",
+	},
+
 	"show": {
 		"Print the contents of a note.",
 		"show NOTE",
