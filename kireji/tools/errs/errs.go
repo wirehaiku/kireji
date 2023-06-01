@@ -1,7 +1,10 @@
 // Package errs implements error creation functions.
 package errs
 
-import "fmt"
+import (
+	"fmt"
+	"path/filepath"
+)
 
 // ArgsMissing returns an error for insufficient arguments.
 func ArgsMissing() error {
@@ -25,7 +28,8 @@ func ExecFail(prog string, err error) error {
 
 // MoveFail returns an error for a failed file move.
 func MoveFail(path string, err error) error {
-	return fmt.Errorf("cannot move %s: %w", path, err)
+	base := filepath.Base(path)
+	return fmt.Errorf("cannot move %s: %w", base, err)
 }
 
 // NoteExists returns an error for an existing Note.
@@ -40,10 +44,12 @@ func NoteMissing(name string) error {
 
 // ReadFail returns an error for a failed file read.
 func ReadFail(path string, err error) error {
-	return fmt.Errorf("cannot read %s: %w", path, err)
+	base := filepath.Base(path)
+	return fmt.Errorf("cannot read %s: %w", base, err)
 }
 
 // WriteFail returns an error for a failed file write.
 func WriteFail(path string, err error) error {
-	return fmt.Errorf("cannot write %s: %w", path, err)
+	base := filepath.Base(path)
+	return fmt.Errorf("cannot write %s: %w", base, err)
 }
