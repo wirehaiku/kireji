@@ -153,6 +153,20 @@ Need to buy: bread, milk, tomato soup, party streamers...
 
 </details> 
 
+### `version`
+
+Print the current Kireji version.
+
+
+<details> <summary>Example:</summary>
+
+```
+$ kireji version
+Kireji version x.y.z (YYYY-MM-DD).
+```
+
+</details>
+
 ## Contributing
 
 Please submit all feature requests and bug reports to the [issue tracker][bugs], thank you.

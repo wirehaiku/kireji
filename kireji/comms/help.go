@@ -46,6 +46,11 @@ var HelpText = map[string][]string{
 		"Print the contents of a note.",
 		"show NOTE",
 	},
+
+	"version": {
+		"Print the current version.",
+		"version",
+	},
 }
 
 // FormatHelp formats a Command's help message.
