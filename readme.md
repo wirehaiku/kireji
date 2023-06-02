@@ -32,12 +32,12 @@ KIREJI_EXT = ".txt"
 
 That's it! That's all the configuration you need.
 
-## Commmands
+## Commands
 
 ### Syntax
 
-Kireji represents note files as lowercase base names.
-For example, the file `~/notes/foo.txt` is represented as `foo` and asking Kireji to make the note `FOO BAR` results in `~/notes/foo-bar.txt` being created.
+- Files are represented as lowercase names, so `~/notes/foo.txt` becomes `foo`.
+- Commands are disambiguated, so typing `l` will auto-expand to `list`.
 
 ### `edit NOTE`
 

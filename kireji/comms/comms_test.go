@@ -10,15 +10,24 @@ import (
 
 func TestGet(t *testing.T) {
 	// setup
-	Commands["test"] = func(*book.Book, []string) error { return nil }
+	Commands = map[string]Command{
+		"comm1": func(*book.Book, []string) error { return nil },
+		"comm2": func(*book.Book, []string) error { return nil },
+		"test":  func(*book.Book, []string) error { return nil },
+	}
 
 	// success
-	comm, err := Get("test")
+	comm, err := Get("t")
 	assert.NotNil(t, comm)
 	assert.NoError(t, err)
 
-	// failure - invalid command
+	// failure - missing command
 	comm, err = Get("nope")
 	assert.Nil(t, comm)
 	assert.Equal(t, errs.CommandMissing("nope"), err)
+
+	// failure - ambiguous command
+	comm, err = Get("comm")
+	assert.Nil(t, comm)
+	assert.Equal(t, errs.CommandAmbiguous("comm", []string{"comm1", "comm2"}), err)
 }

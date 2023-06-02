@@ -13,6 +13,12 @@ func TestArgsMissing(t *testing.T) {
 	assert.EqualError(t, err, "not enough arguments")
 }
 
+func TestCommmandAmbiguous(t *testing.T) {
+	// success
+	err := CommandAmbiguous("t", []string{"test1", "test2"})
+	assert.EqualError(t, err, "t is ambiguous, did you mean: test1, test2?")
+}
+
 func TestCommandMissing(t *testing.T) {
 	// success
 	err := CommandMissing("test")

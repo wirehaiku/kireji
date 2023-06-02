@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Command disambiguation.
 - New commands: `move`, `version`.
 
 ## [0.2.0] - 2023-05-27

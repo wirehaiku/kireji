@@ -2,6 +2,9 @@
 package comms
 
 import (
+	"sort"
+	"strings"
+
 	"github.com/wirehaiku/kireji/kireji/items/book"
 	"github.com/wirehaiku/kireji/kireji/tools/errs"
 )
@@ -24,10 +27,21 @@ var Commands = map[string]Command{
 
 // Get returns a Command by name, or an error.
 func Get(name string) (Command, error) {
-	comm, ok := Commands[name]
-	if !ok {
-		return nil, errs.CommandMissing(name)
+	var comms []string
+
+	for comm := range Commands {
+		if strings.HasPrefix(comm, name) {
+			comms = append(comms, comm)
+		}
 	}
 
-	return comm, nil
+	sort.Strings(comms)
+	switch len(comms) {
+	case 0:
+		return nil, errs.CommandMissing(name)
+	case 1:
+		return Commands[comms[0]], nil
+	default:
+		return nil, errs.CommandAmbiguous(name, comms)
+	}
 }

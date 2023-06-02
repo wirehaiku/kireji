@@ -4,11 +4,18 @@ package errs
 import (
 	"fmt"
 	"path/filepath"
+	"strings"
 )
 
 // ArgsMissing returns an error for insufficient arguments.
 func ArgsMissing() error {
 	return fmt.Errorf("not enough arguments")
+}
+
+// CommandAmbiguous returns an error for an ambiguous Command.
+func CommandAmbiguous(name string, comms []string) error {
+	join := strings.Join(comms, ", ")
+	return fmt.Errorf("%s is ambiguous, did you mean: %s?", name, join)
 }
 
 // CommandMissing returns an error for a nonexistent Command.
