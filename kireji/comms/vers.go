@@ -6,7 +6,7 @@ import (
 )
 
 // Version is the current Kireji version.
-var Version = "0.2.0 (2023-05-27)"
+var Version = "1.0.0 (2023-06-04)"
 
 // VersionCommand prints the current Kireji version.
 func VersionCommand(book *book.Book, args []string) error {
